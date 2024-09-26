@@ -1,0 +1,10 @@
+name: Build and Deploy image to ACR
+'on': push
+jobs:
+  build:
+    run-on: ubuntu-latest
+    steps:
+      '-name': checkout
+      uses: actions/checkout@main
+      '-run': |
+        docker build -t sampleapp:1:0:0 application code
