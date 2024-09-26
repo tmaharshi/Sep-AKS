@@ -7,5 +7,5 @@ jobs:
       - name: checkout
         uses: actions/checkout@main
       - run: |
-          docker build -t sampleapp:1.0.0 application code
+          docker build -t sampleapp:1.0.0 applicationcode
           docker images
