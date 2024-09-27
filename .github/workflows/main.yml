@@ -25,8 +25,8 @@ jobs:
           version: 'latest'
       - name: Deployment to AKS
       - run: |
-              az login --service-principal --username ${{ secrets.REGISTRY_USERNAME }} --password ${{ secrets.REGISTRY_PASSWORD }} --tenant 3d993c04-128c-48de-ba4a-1afbb101cfa1
-              az acr login --name ${{ secrets.REGISTRY_LOGIN_SERVER }}
-              az aks get-credentials --resource-group Dev-AKS-Cluster_group --name Dev-AKS-Cluster --overwrite-existing
+          az login --service-principal --username ${{ secrets.REGISTRY_USERNAME }} --password ${{ secrets.REGISTRY_PASSWORD }} --tenant 3d993c04-128c-48de-ba4a-1afbb101cfa1
+          az acr login --name ${{ secrets.REGISTRY_LOGIN_SERVER }}
+          az aks get-credentials --resource-group Dev-AKS-Cluster_group --name Dev-AKS-Cluster --overwrite-existing
 
           
