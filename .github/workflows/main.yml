@@ -28,5 +28,5 @@ jobs:
              az login --service-principal --username ${{ secrets.REGISTRY_USERNAME }} --password ${{ secrets.REGISTRY_PASSWORD }} --tenant 3d993c04-128c-48de-ba4a-1afbb101cfa1
              az acr login --name ${{ secrets.REGISTRY_LOGIN_SERVER }}
              az aks get-credentials --resource-group Dev-AKS-Cluster_group --name Dev-AKS-Cluster --overwrite-existing
-
-          
+             kubectl create secret docker-registry acr-secret --docker-server=sepaks.azurecr.io --docker-username=sepaks --docker-password=ZtjXKK/dTcHf9uYBB/8qXKScuM7tb4P1BYClFNZuVi+ACRAs7vo1
+             kubectl get secrets
