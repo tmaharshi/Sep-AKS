@@ -7,5 +7,10 @@ jobs:
       - name: checkout
         uses: actions/checkout@main
       - run: |
-          docker build -t sampleapp:1.0.0 applicationcode
+          docker build -t maharshiapp:1.0.0 applicationcode
           docker images
+          az login --service-principal --username ${{ secrets.REGISTRY_USERNAME }} --password ${{ secrets.REGISTRY_PASSWORD }} --tenant 3d993c04-128c-48de-ba4a-1afbb101cfa1
+          az acr login --name ${{ secrets.REGISTRY_LOGIN_SERVER }}
+          docker tag maharshiapp:1.0.0 ${{ secrets.REGISTRY_LOGIN_SERVER }}/maharshiapp:1.0.0
+          docker push ${{secrets.REGISTRY_LOGIN_SERVER }}/maharshiapp:1.0.0
+          
