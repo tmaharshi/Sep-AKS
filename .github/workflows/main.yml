@@ -13,4 +13,20 @@ jobs:
           az acr login --name ${{ secrets.REGISTRY_LOGIN_SERVER }}
           docker tag maharshiapp:1.0.0 ${{ secrets.REGISTRY_LOGIN_SERVER }}/maharshiapp:1.0.0
           docker push ${{secrets.REGISTRY_LOGIN_SERVER }}/maharshiapp:1.0.0
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@main
+      - name: Set up kubectl
+        uses: azure/setup-kubectl@v1
+        with:
+          version: 'latest'
+      - name: Deployment to AKS
+      - run: |
+              az login --service-principal --username ${{ secrets.REGISTRY_USERNAME }} --password ${{ secrets.REGISTRY_PASSWORD }} --tenant 3d993c04-128c-48de-ba4a-1afbb101cfa1
+              az acr login --name ${{ secrets.REGISTRY_LOGIN_SERVER }}
+              az aks get-credentials --resource-group ${{ secrets.RESOURCE_GROUP1 }} --name ${{ secrets.CLUSTER_NAME }} --overwrite-existing
+              
           
