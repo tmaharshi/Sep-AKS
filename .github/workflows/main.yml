@@ -17,16 +17,16 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - name: checkout
-        uses: actions/checkout@main
+      - name: Checkout
+        uses: actions/checkout@main  # Use stable version
       - name: Set up kubectl
         uses: azure/setup-kubectl@v1
         with:
-          version: 'latest'
+          version: 'latest'  # Optionally specify the version you want
       - name: Deployment to AKS
-      - run: |
-          az login --service-principal --username ${{ secrets.REGISTRY_USERNAME }} --password ${{ secrets.REGISTRY_PASSWORD }} --tenant 3d993c04-128c-48de-ba4a-1afbb101cfa1
-          az acr login --name ${{ secrets.REGISTRY_LOGIN_SERVER }}
-          az aks get-credentials --resource-group Dev-AKS-Cluster_group --name Dev-AKS-Cluster --overwrite-existing
+        run: | 
+             az login --service-principal --username ${{ secrets.REGISTRY_USERNAME }} --password ${{ secrets.REGISTRY_PASSWORD }} --tenant 3d993c04-128c-48de-ba4a-1afbb101cfa1
+             az acr login --name ${{ secrets.REGISTRY_LOGIN_SERVER }}
+             az aks get-credentials --resource-group Dev-AKS-Cluster_group --name Dev-AKS-Cluster --overwrite-existing
 
           
