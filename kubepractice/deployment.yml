@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment 
 metadata: #Dictionary
-  name: myapp3-deployment
+  name: maharshi-deployment
 spec: # Dictionary
   replicas: 3
   selector:
@@ -9,12 +9,14 @@ spec: # Dictionary
       app: myapp3
   template:  
     metadata: # Dictionary
-      name: myapp3-pod
+      name: maharshi-pod
       labels: # Dictionary
         app: myapp3  # Key value paids
     spec:
       containers: # List
-        - name: myapp3-container
-          image: stacksimplify/kubenginx:3.0.0
+        - name: maharshi-container
+          image: sepaks.azurecr.io/maharshiapp:1.0.0
           ports: 
             - containerPort: 80
+      imagePullSecrets:
+        - name: acr-secret
